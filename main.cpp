@@ -21,6 +21,7 @@ int main(int argc, char *argv[]) {
 
 
 
+
     QWidget *member2Tab = new QWidget;
     QLabel *member2Label = new QLabel("這是組員2頁面");
     QPushButton *styleButton = new QPushButton("Front select");
@@ -35,6 +36,26 @@ int main(int argc, char *argv[]) {
         QFont font = QFontDialog::getFont(&ok, leaderLabel->font(), nullptr, "選擇字體");
         if (ok) {
             leaderLabel->setFont(font);
+        }
+    });
+
+
+
+
+
+    QWidget *member3Tab = new QWidget;
+    QLabel *member3Label = new QLabel("這是組員3頁面");
+    QPushButton *fileButton = new QPushButton("File select");
+    QVBoxLayout *member3Layout = new QVBoxLayout;
+    member3Layout->addWidget(member3Label);
+    member3Layout->addWidget(fileButton);
+    member3Tab->setLayout(member3Layout);
+
+
+    QObject::connect(fileButton, &QPushButton::clicked, [=]() {
+        QString filePath = QFileDialog::getOpenFileName(nullptr, "選擇檔案", "", "所有檔案 (*.*)");
+        if (!filePath.isEmpty()) {
+            leaderLabel->setText(filePath);
         }
     });
 
