@@ -19,6 +19,22 @@ int main(int argc, char *argv[]) {
     leaderTab->setLayout(leaderLayout);
 
 
+    QWidget *member1Tab = new QWidget;
+    QLabel *member1Label = new QLabel("這是組員1頁面");
+    QPushButton *colorButton = new QPushButton("color select");
+    QVBoxLayout *member1Layout = new QVBoxLayout;
+    member1Layout->addWidget(member1Label);
+    member1Layout->addWidget(colorButton);
+    member1Tab->setLayout(member1Layout);
+
+
+    QObject::connect(colorButton, &QPushButton::clicked, [=]() {
+        QColor color = QColorDialog::getColor(Qt::white, nullptr, "選擇文字顏色");
+        if (color.isValid()) {
+            QString colorName = color.name();
+            leaderLabel->setStyleSheet(QString("color: %1;").arg(colorName));
+
+
    
 
 
@@ -59,6 +75,7 @@ int main(int argc, char *argv[]) {
         QString filePath = QFileDialog::getOpenFileName(nullptr, "選擇檔案", "", "所有檔案 (*.*)");
         if (!filePath.isEmpty()) {
             leaderLabel->setText(filePath);
+
         }
     });
 
