@@ -19,6 +19,9 @@ int main(int argc, char *argv[]) {
     leaderTab->setLayout(leaderLayout);
 
 
+   
+
+
 
 
 
@@ -58,6 +61,7 @@ int main(int argc, char *argv[]) {
             leaderLabel->setText(filePath);
         }
     });
+
 
 
 
